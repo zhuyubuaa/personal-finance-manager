@@ -4,7 +4,7 @@
 
 You can run the 'bat' file, which has three 'pip install' sentence
 
-```bat
+```bash
 pip install djangorestframework // rest-api
 pip install pymysql             // connect database
 pip install django-cors-headers // connect frontend and backend
@@ -16,14 +16,14 @@ You should run the backend and frontend at the same time.
 
 ### Run backend
 
-```bat
+```bash
 cd backend
 python manage.py runserver
 ```
 
 ### Run frontend
 
-```bat
+```bash
 cd frontend
 ```
 

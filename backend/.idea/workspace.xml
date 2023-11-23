@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="347462f3-7942-45fe-ac6d-bd2c5169526a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Register.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +87,8 @@
       <workItem from="1700574567086" duration="1456000" />
       <workItem from="1700577665253" duration="626000" />
       <workItem from="1700580303516" duration="567000" />
-      <workItem from="1700634142521" duration="1438000" />
+      <workItem from="1700634142521" duration="4341000" />
+      <workItem from="1700702381930" duration="1052000" />
     </task>
     <servers />
   </component>

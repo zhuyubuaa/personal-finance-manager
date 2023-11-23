@@ -5,8 +5,8 @@ export default function Register(this: any): JSX.Element {
     async function onSubmit(event: any): Promise<any> {
         event.preventDefault();
         const newUser = {
-            "u_name": event.target.username.value,
-            "password": event.target.password.value,
+            u_name: event.target.username.value,
+            password: event.target.password.value,
         };
         console.log("newUser", newUser);
         // "后端注册API"
@@ -32,7 +32,6 @@ export default function Register(this: any): JSX.Element {
                     <label htmlFor="password">Password</label>
                     <input type="text" id="password" name="password"/>
                     <input type="submit" value="Sign up"/>
-
                 </fieldset>
             </form>
         </div>

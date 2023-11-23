@@ -5,8 +5,8 @@ export default function Login(): JSX.Element {
     async function onSubmit(event: any): Promise<any> {
         event.preventDefault();
         const loginUser = {
-            "u_id": event.target.u_id.value,
-            "password": event.target.password.value,
+            u_id: event.target.u_id.value,
+            password: event.target.password.value,
         };
         console.log("login user", loginUser);
 
