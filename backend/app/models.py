@@ -14,7 +14,7 @@ class User(models.Model):
 
 
 class Account(models.Model):
-    a_id = models.IntegerField(primary_key=True)
+    a_id = models.AutoField(primary_key=True)
     a_name = models.CharField(max_length=MAX_NAME_LENGTH)
     remaining = models.FloatField()
 
@@ -23,7 +23,7 @@ class Account(models.Model):
 
 
 class AccountBook(models.Model):
-    ab_id = models.IntegerField(primary_key=True)
+    ab_id = models.AutoField(primary_key=True)
     ab_name = models.CharField(max_length=MAX_NAME_LENGTH)
 
     def __str__(self):
@@ -31,7 +31,7 @@ class AccountBook(models.Model):
 
 
 class Log(models.Model):
-    l_id = models.IntegerField(primary_key=True)
+    l_id = models.AutoField(primary_key=True)
     time = models.DateTimeField()
     l_amount = models.FloatField()
     remark = models.CharField(max_length=100, null=True)
