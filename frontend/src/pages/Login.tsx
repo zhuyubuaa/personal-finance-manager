@@ -15,7 +15,7 @@ export default function Login(): JSX.Element {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(loginUser),
         }).then(res => res.text()).then(res => {
-            if (res == "0") {
+            if (res === "0") {
                 alert("login successfully!")
             } else {
                 alert(res)

@@ -1,0 +1,10 @@
+GET http://localhost:8000/user HTTP/1.1
+
+###
+POST http://localhost:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "u_name": "test",
+    "password": "1234"
+}py -m venv env
