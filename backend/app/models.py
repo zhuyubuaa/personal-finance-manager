@@ -34,6 +34,24 @@ class AccountBook(models.Model):
         return self.ab_id
 
 
+class Log(models.Model):
+    l_id = models.AutoField(primary_key=True)
+    time = models.DateTimeField()
+    l_amount = models.FloatField()
+    remark = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return self.l_id
+
+
+class Budget(models.Model):
+    b_id = models.IntegerField(primary_key=True)
+    b_amount = models.FloatField()
+
+    def __str__(self):
+        return self.b_id
+
+
 class Type(models.Model):
     type_name = models.CharField(primary_key=True, max_length=MAX_NAME_LENGTH)
     is_out = models.BooleanField()
