@@ -71,18 +71,19 @@ export default function Transaction(props: any): JSX.Element {
   }, []);
 
   const getTypes = async (): Promise<any> => {
-    // try {
-    //   const response = await fetch("http://localhost:8000/type", {
-    //     method: "get",
-    //     headers: { "Content-Type": "application/json" },
-    //   });
-    //   if (response.status === 200) {
-    //     console.log("types", response);
-    //     // setTypes()
-    //   }
-    // } catch (error) {
-    //   console.log("Error fetching type data", error);
-    // }
+    try {
+      const response = await fetch("http://localhost:8000/type", {
+        method: "get",
+        headers: { "Content-Type": "application/json" },
+      });
+      response.json().then((res) => console.log("res", res));
+
+      // if (response.status === 200) {
+      //   console.log("types", response.json());
+      // }
+    } catch (error) {
+      console.log("Error fetching type data", error);
+    }
     setTypes(typesData);
     setSubTypes(() => [...typesData["income"]]);
   };
