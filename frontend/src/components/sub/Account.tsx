@@ -10,7 +10,7 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
-import {useUserContext} from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 
 export default function Account(props: any): JSX.Element {
   const { open, onClose } = props;
@@ -22,23 +22,29 @@ export default function Account(props: any): JSX.Element {
   const onSubmit = async (event: any): Promise<any> => {
     event.preventDefault();
     setNameError(false);
-    if (accName === "") {
-      setNameError(true);
-    } else if (accName && accBalance) {
-      const newAccount = {
-        a_name: accName,
-        remaining: accBalance,
-        u_id: curUser?.userId
-      };
-      console.log("newAccount", newAccount);
+    try {
+      if (accName === "") {
+        setNameError(true);
+      } else if (accName && accBalance) {
+        const newAccount = {
+          a_name: accName,
+          remaining: accBalance,
+          u_id: curUser?.userId,
+        };
+        console.log("newAccount", newAccount);
 
-      const response = await fetch("http://localhost:8000/account", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newAccount),
-      });
+        const response = await fetch("http://localhost:8000/account", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newAccount),
+        });
 
-      console.log("response", response);
+        console.log("response", response);
+      }
+    } catch (error) {
+      console.log("Account add error", error);
+    } finally {
+      onClose();
     }
   };
 

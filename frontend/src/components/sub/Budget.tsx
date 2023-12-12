@@ -49,17 +49,23 @@ export default function Budget(props: any): JSX.Element {
 
   const onSubmit = async (event: any): Promise<any> => {
     event.preventDefault();
-    const newBudget = {
-      ab_id: ledger,
-      b_amount: budgetAmount,
-      type_name: budgetType,
-    };
-    console.log("newBudget", newBudget);
-    fetch("http://localhost:8000/budget", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newBudget),
-    });
+    try {
+      const newBudget = {
+        ab_id: ledger,
+        b_amount: budgetAmount,
+        type_name: budgetType,
+      };
+      console.log("newBudget", newBudget);
+      fetch("http://localhost:8000/budget", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newBudget),
+      });
+    } catch (error) {
+      console.log("Budget add error", error);
+    } finally {
+      onClose();
+    }
   };
 
   return (

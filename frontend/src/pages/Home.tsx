@@ -3,6 +3,7 @@ import { Box, Button, CircularProgress } from "@mui/material";
 import Budget from "../components/sub/Budget";
 import Header from "../components/Header";
 import { useUserContext } from "../context/UserContext";
+import "../styles/pages/home.css";
 
 //dummy data
 const dummyLedgers = [
@@ -46,6 +47,12 @@ interface LedgerType {
   ab_name: string;
 }
 
+interface BudgetType {
+  b_id: number;
+  type_name: string;
+  b_amount: number;
+}
+
 interface TransactionType {
   l_id: number;
   l_amount: number;
@@ -56,6 +63,7 @@ interface TransactionType {
 
 export default function Home(): JSX.Element {
   const [ledgers, setLedgers] = useState<LedgerType[]>([]);
+  const [budgets, setBudgets] = useState<BudgetType[]>([]);
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
   const [selectedLedger, setSelectedLedger] = useState<number | null>(null); //ledger id
   const [budgetDialog, setBudgetDialog] = useState<boolean>(false);
@@ -69,6 +77,7 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     getTransactions();
+    getBudgets();
   }, [selectedLedger]);
 
   const getLedgers = async (): Promise<void> => {
@@ -82,19 +91,14 @@ export default function Home(): JSX.Element {
             headers: { "Content-Type": "application/json" },
           }
         );
-        // console.log("get ledgers", response);
         if (response?.status === 200) {
           const ledgersData = (await response.json()) as any;
-          // console.log("ledgersData", ledgersData);
-          // console.log("ledgersid", ledgersData[0]["ab_id"]);
           setLedgers(ledgersData);
           setSelectedLedger(ledgersData[0]["ab_id"]);
         } else {
           console.log("Error response");
         }
       }
-      // setLedgers(dummyLedgers);
-      // setSelectedLedger(ledgers[0].id);
     } catch (error) {
       console.log("Error fetching ledgers", error);
     } finally {
@@ -115,7 +119,6 @@ export default function Home(): JSX.Element {
         );
         if (response.status === 200) {
           const transData = (await response.json()) as any;
-          console.log("transData", transData);
           setTransactions(transData);
         } else {
           console.log("Error trans response");
@@ -125,6 +128,28 @@ export default function Home(): JSX.Element {
       console.log("Error fetching transactions");
     } finally {
       setLogLoading(false);
+    }
+  };
+
+  const getBudgets = async (): Promise<any> => {
+    try {
+      if (selectedLedger) {
+        const response = await fetch(
+          `http://localhost:8000/budget?ab_id=` + selectedLedger,
+          {
+            method: "get",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        if (response.status === 200) {
+          const budgetData = (await response.json()) as any;
+          setBudgets(budgetData);
+        } else {
+          console.log("Error budget response");
+        }
+      }
+    } catch (error) {
+      console.log("Error fetching budgets");
     }
   };
 
@@ -141,7 +166,6 @@ export default function Home(): JSX.Element {
     <>
       <Box className="">
         <Header />
-
         <div className="home">
           <div className="home-ledgers">
             {loading ? (
@@ -163,6 +187,16 @@ export default function Home(): JSX.Element {
               <Button variant="contained" onClick={onClickBudget}>
                 Add Budget
               </Button>
+              <div className="home-budgets">
+                {budgets[0] &&
+                  budgets.map((budget: BudgetType) => (
+                    <div key={budget.b_id} className="budget-field">
+                      {budget.type_name}
+                      <br />
+                      <h4> {budget.b_amount}</h4>
+                    </div>
+                  ))}
+              </div>
             </div>
             <div className="home-transactions">
               {logLoading ? (

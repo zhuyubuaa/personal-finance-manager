@@ -9,7 +9,7 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
-import {useUserContext} from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 
 export default function Ledger(props: any): JSX.Element {
   const { open, onClose } = props;
@@ -19,20 +19,26 @@ export default function Ledger(props: any): JSX.Element {
 
   const onSubmit = async (event: any): Promise<any> => {
     event.preventDefault();
-    setNameError(false);
-    if (ledgerName === "") {
-      setNameError(true);
-    } else {
-      const newAccBook = {
-        ab_name: ledgerName,
-        u_id: curUser?.userId
-      };
-      const response = await fetch("http://localhost:8000/accountbook", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newAccBook),
-      });
-      console.log("response", response);
+    try {
+      if (ledgerName === "") {
+        setNameError(true);
+      } else {
+        setNameError(false);
+        const newAccBook = {
+          ab_name: ledgerName,
+          u_id: curUser?.userId,
+        };
+        const response = await fetch("http://localhost:8000/accountbook", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newAccBook),
+        });
+        console.log("response", response);
+      }
+    } catch (error) {
+      console.log("Ledge add error", error);
+    } finally {
+      onClose();
     }
   };
 
