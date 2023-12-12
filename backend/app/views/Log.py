@@ -11,7 +11,7 @@ class LogView(APIView):
         # print(data["u_id"])
         if "ab_id" in data.keys() and data["ab_id"] != "":
             logList = [{"l_id": l.l_id,
-                        "time": l.time.strftime("%Y年%m月%d日 %H:%M:%S"),
+                        "time": l.time.strftime("%Y.%m.%d %H:%M:%S"),
                         "l_amount": l.l_amount,
                         "remark": l.remark,
                         "type_name": l.type_id}

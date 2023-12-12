@@ -33,6 +33,7 @@ export const UserContextProvider = ({ children }: UserProviderType) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("uf in context");
     const user = localStorage.getItem("user");
     if (user) {
       const curUser = JSON.parse(user);
@@ -41,8 +42,7 @@ export const UserContextProvider = ({ children }: UserProviderType) => {
     } else {
       navigate("/login");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
 
   const handleLogout = (): void => {
     setCurrentUser(undefined);

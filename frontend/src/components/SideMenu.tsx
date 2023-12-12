@@ -1,18 +1,15 @@
+import { Link } from "react-router-dom";
+
 export default function SideMenu() {
   return (
     <div className="side-menu">
       <ul>
         <li>
-          <a href="/home">Ledgers</a>
+          <Link to="/home"> Home</Link>
         </li>
-        {/* <li>
-          <a href="/accounts">Accounts</a>
-        </li> */}
-        {/* <li>
-          <a href="/budgets">Budgets</a>
-        </li> */}
+
         <li>
-          <a href="/profile">Profile</a>
+          <Link to="/profile">Profile</Link>
         </li>
       </ul>
     </div>
