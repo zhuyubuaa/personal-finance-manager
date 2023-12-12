@@ -1,16 +1,16 @@
 export default function SideMenu() {
   return (
-    <div>
+    <div className="side-menu">
       <ul>
         <li>
           <a href="/home">Ledgers</a>
         </li>
-        <li>
+        {/* <li>
           <a href="/accounts">Accounts</a>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <a href="/budgets">Budgets</a>
-        </li>
+        </li> */}
         <li>
           <a href="/profile">Profile</a>
         </li>

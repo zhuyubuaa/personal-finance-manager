@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button } from "@mui/material";
-import SideMenu from "../components/SideMenu";
+import Budget from "../components/sub/Budget";
+import Header from "../components/Header";
 
 //dummy data
 const dummyLedgers = [
@@ -56,6 +57,7 @@ export default function Home(): JSX.Element {
   const [ledgers, setLedgers] = useState<LedgerType[]>([]);
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
   const [selectedLedger, setSelectedLedger] = useState<number | null>(null); //ledger id
+  const [budgetDialog, setBudgetDialog] = useState<boolean>(false);
 
   useEffect(() => {
     getLedgers();
@@ -83,6 +85,7 @@ export default function Home(): JSX.Element {
       //   console.log("Error response");
       // }
       setLedgers(dummyLedgers);
+      setSelectedLedger(dummyLedgers[0].id);
     } catch (error) {
       console.log("Error fetching ledgers", error);
     }
@@ -113,46 +116,61 @@ export default function Home(): JSX.Element {
   };
 
   const onClickBudget = (): void => {
-    
+    setBudgetDialog(true);
   };
 
   return (
-    <Box className="home">
-      <SideMenu />
-      <div className="home-ledgers">
-        {ledgers.map((ledger, i) => (
-          <div
-            key={ledger.id}
-            className="ledger-card"
-            onClick={() => handleLedgerChange(ledger.id)}
-          >
-            {ledger.ab_name}
-          </div>
-        ))}
-      </div>
-      <div className="home-logs">
-        <div className="home-overview">
-          <Button onClick={onClickBudget}>Add Budget</Button>
-        </div>
-        <div className="home-transactions">
-          {transactions.map((transaction, i) => (
-            <div key={transaction.l_id} className="trans-card">
-              <div className="trans-card-left">
-                <h4> {transaction.type_name}</h4>
-                <div>
-                  {transaction.time} {transaction.remark}
-                </div>
-              </div>
+    <>
+      <Box className="">
+        <Header />
+        <div className="home">
+          <div className="home-ledgers">
+            {ledgers.map((ledger, i) => (
               <div
-                className={`${transaction.l_amount > 0 ? "income" : "outcome"}`}
+                key={ledger.id}
+                className="ledger-card"
+                onClick={() => handleLedgerChange(ledger.id)}
               >
-                {transaction.l_amount > 0 ? "+" : ""}
-                {transaction.l_amount}
+                {ledger.ab_name}
               </div>
+            ))}
+          </div>
+          <div className="home-logs">
+            <div className="home-overview">
+              <Button variant="contained" onClick={onClickBudget}>
+                Add Budget
+              </Button>
             </div>
-          ))}
+            <div className="home-transactions">
+              {transactions.map((transaction, i) => (
+                <div key={transaction.l_id} className="trans-card">
+                  <div className="trans-card-left">
+                    <h4> {transaction.type_name}</h4>
+                    <div>
+                      {transaction.time} {transaction.remark}
+                    </div>
+                  </div>
+                  <div
+                    className={`${
+                      transaction.l_amount > 0 ? "income" : "outcome"
+                    }`}
+                  >
+                    {transaction.l_amount > 0 ? "+" : ""}
+                    {transaction.l_amount}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </Box>
+      </Box>
+      {budgetDialog && (
+        <Budget
+          open={budgetDialog}
+          onClose={() => setBudgetDialog(false)}
+          ledger={selectedLedger}
+        />
+      )}
+    </>
   );
 }

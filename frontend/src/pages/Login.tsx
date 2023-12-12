@@ -13,7 +13,6 @@ export default function Login(): JSX.Element {
       u_id: event.target.u_id.value,
       password: event.target.password.value,
     };
-    console.log("login user", loginUser);
 
     const response = await fetch("http://localhost:8000/login", {
       method: "post",
@@ -21,12 +20,13 @@ export default function Login(): JSX.Element {
       body: JSON.stringify(loginUser),
     });
 
-    console.log("login res", response);
     if (response.status === 200) {
-      setCurrentUser({
+      const user = {
         userId: loginUser.u_id,
         userName: "username",
-      });
+      };
+      setCurrentUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/home");
     } else {
       alert("Unable to login");
@@ -44,7 +44,7 @@ export default function Login(): JSX.Element {
           <input type="text" id="u_id" name="u_id" />
           <label htmlFor="password">Password</label>
           <input type="text" id="password" name="password" />
-          <input type="Submit" value="Login" />
+          <input type="Submit" />
         </fieldset>
         <a href="/register">Register new user</a>
       </form>

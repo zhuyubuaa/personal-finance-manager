@@ -6,7 +6,6 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import "../src/styles/components/form.css";
-import { ProtectedRoute } from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 
 function App() {
@@ -15,25 +14,20 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
         <Route
           path="/home"
           element={
-            <ProtectedRoute>
-              <Layout>
-                <Home />
-              </Layout>
-            </ProtectedRoute>
+            <Layout>
+              <Home />
+            </Layout>
           }
         />
         <Route
           path="/profile"
           element={
-            <ProtectedRoute>
-              <Layout>
-                <Profile />
-              </Layout>
-            </ProtectedRoute>
+            <Layout>
+              <Profile />
+            </Layout>
           }
         />
       </Routes>

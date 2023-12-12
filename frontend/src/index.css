@@ -12,17 +12,22 @@ code {
     monospace;
 }
 
+.layout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-body {
+  width: 90%;
+  height: 100vh;
+}
+
 .home {
   display: flex;
   width: 100vw;
   height: 100%;
   justify-content: center;
   align-items: center;
-}
-
-.home-menu {
-  width: 10%;
-  height: 100%;
 }
 
 .home-ledgers {
@@ -38,8 +43,8 @@ code {
 }
 
 .home-logs {
-  width: 60%;
-  height: 84vh;
+  width: 80%;
+  /* height: 84vh; */
   padding: 8px;
   background-color: #ffffff;
 }
