@@ -15,23 +15,71 @@ code {
 .home {
   display: flex;
   width: 100vw;
-  height: 100%S;
-  gap: 12px;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
 
-.home-logs {
-  width: 70%;
-  height: 84vh;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 8px;
-  padding: 8px;
+.home-menu {
+  width: 10%;
+  height: 100%;
 }
 
-.home-chart {
-  width: 24%;
+.home-ledgers {
+  width: 20%;
   height: 84vh;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 8px;
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background-color: #f6f8fb;
+}
+
+.home-logs {
+  width: 60%;
+  height: 84vh;
+  padding: 8px;
+  background-color: #ffffff;
+}
+
+/* Ledger - Account book */
+.ledger-card {
+  width: 200px;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Transaction - Log  */
+.trans-card {
+  width: 70%;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #404040;
+}
+
+.trans-card-left {
+  font-size: small;
+}
+.trans-card-left h4 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.income {
+  color: #6c74bd;
+}
+
+.outcome {
+  color: #f08895;
 }

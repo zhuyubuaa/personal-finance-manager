@@ -1,9 +1,12 @@
 import React from "react";
 import "../styles/pages/login.css";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 
 export default function Login(): JSX.Element {
+  const { setCurrentUser } = useUserContext();
   const navigate = useNavigate();
+
   async function onSubmit(event: any): Promise<any> {
     event.preventDefault();
     const loginUser = {
@@ -12,20 +15,23 @@ export default function Login(): JSX.Element {
     };
     console.log("login user", loginUser);
 
-    const response = fetch("http://localhost:8000/login", {
+    const response = await fetch("http://localhost:8000/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginUser),
-    })
-      .then((res) => res.text())
-      .then((res) => {
-        if (res === "0") {
-          alert("Logged In!");
-          navigate("/");
-        } else {
-          alert(res);
-        }
+    });
+
+    console.log("login res", response);
+    if (response.status === 200) {
+      setCurrentUser({
+        userId: loginUser.u_id,
+        userName: "username",
       });
+      navigate("/home");
+    } else {
+      alert("Unable to login");
+    }
+
     return;
   }
 
@@ -40,6 +46,7 @@ export default function Login(): JSX.Element {
           <input type="text" id="password" name="password" />
           <input type="Submit" value="Login" />
         </fieldset>
+        <a href="/register">Register new user</a>
       </form>
     </div>
   );

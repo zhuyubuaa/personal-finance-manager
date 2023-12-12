@@ -18,13 +18,14 @@ import {
 import Account from "./sub/Account";
 import Ledger from "./sub/Ledger";
 import Transaction from "./sub/Transaction";
-import { useNavigate } from "react-router-dom";
+import ProfileMenu from "./ProfileMenu";
 
 export default function Header(): JSX.Element {
   const [accountDialog, setAccountDialog] = useState<boolean>(false);
   const [transDialog, setTransDialog] = useState<boolean>(false);
   const [ledgerDialog, setLedgertDialog] = useState<boolean>(false);
-  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const openMenu = Boolean(anchorEl);
 
   const HeaderButtons = styled(Box)({
     display: "flex",
@@ -54,6 +55,13 @@ export default function Header(): JSX.Element {
     },
   ];
 
+  const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }} className="header">
@@ -61,7 +69,7 @@ export default function Header(): JSX.Element {
           <Container maxWidth="xl">
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Home
+                Icon
               </Typography>
               {/* change position later */}
               {headerIcons.map((iconObj) => {
@@ -77,13 +85,18 @@ export default function Header(): JSX.Element {
                   </Button>
                 );
               })}
-              <Button onClick={() => navigate("/profile")}>
+              <Button onClick={handleMenuOpen}>
                 <HeaderButtons>
                   <AccountCircle />
                   用户
                 </HeaderButtons>
               </Button>
             </Toolbar>
+            <ProfileMenu
+              openMenu={openMenu}
+              anchorEl={anchorEl}
+              onClose={handleMenuClose}
+            />
           </Container>
         </AppBar>
       </Box>

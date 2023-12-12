@@ -1,4 +1,3 @@
-// import Footer from "./Footer";
 import Header from "./Header";
 
 export default function Layout({ children }: any): JSX.Element {
@@ -6,7 +5,6 @@ export default function Layout({ children }: any): JSX.Element {
     <div className="layout">
       <Header />
       {children}
-      {/* <Footer /> */}
     </div>
   );
 }

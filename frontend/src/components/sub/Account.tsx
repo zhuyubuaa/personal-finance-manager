@@ -30,7 +30,7 @@ export default function Account(props: any): JSX.Element {
       console.log("newAccount", newAccount);
 
       const response = await fetch("http://localhost:8000/account", {
-        method: "",
+        method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newAccount),
       });
