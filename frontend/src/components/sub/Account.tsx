@@ -10,12 +10,14 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
+import {useUserContext} from "../../context/UserContext";
 
 export default function Account(props: any): JSX.Element {
   const { open, onClose } = props;
   const [accName, setAccName] = useState<string>("");
   const [accBalance, setAccBalance] = useState<string>("");
   const [nameError, setNameError] = useState<boolean>(false);
+  const curUser = useUserContext().currentUser;
 
   const onSubmit = async (event: any): Promise<any> => {
     event.preventDefault();
@@ -26,6 +28,7 @@ export default function Account(props: any): JSX.Element {
       const newAccount = {
         a_name: accName,
         remaining: accBalance,
+        u_id: curUser?.userId
       };
       console.log("newAccount", newAccount);
 

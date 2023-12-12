@@ -52,10 +52,12 @@ class UserLogin(APIView):
         id = request.data["u_id"]
         password = request.data["password"]
         user = User.objects.filter(u_id=id).first()
+        info = {"value": 0, "u_name": ""}
         if user:
             if user.password == password:
-                return Response(0)
+                info["u_name"] = user.u_name
             else:
-                return Response("password not match")  # password not match
+                info["value"] = 1  # password not match
         else:
-            return Response("user not found")  # user not found
+            info["value"] = 2 # user not found
+        return Response(info)

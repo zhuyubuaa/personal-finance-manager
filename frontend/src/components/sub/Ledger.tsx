@@ -9,11 +9,13 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
+import {useUserContext} from "../../context/UserContext";
 
 export default function Ledger(props: any): JSX.Element {
   const { open, onClose } = props;
   const [ledgerName, setLedgerName] = useState<string>("");
   const [nameError, setNameError] = useState<boolean>(false);
+  const curUser = useUserContext().currentUser;
 
   const onSubmit = async (event: any): Promise<any> => {
     event.preventDefault();
@@ -23,6 +25,7 @@ export default function Ledger(props: any): JSX.Element {
     } else {
       const newAccBook = {
         ab_name: ledgerName,
+        u_id: curUser?.userId
       };
       const response = await fetch("http://localhost:8000/accountbook", {
         method: "post",

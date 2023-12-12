@@ -1,7 +1,9 @@
 import React from "react";
 import "../styles/pages/login.css";
+import {useNavigate} from "react-router-dom";
 
 export default function Register(this: any): JSX.Element {
+    const navigate = useNavigate();
     async function onSubmit(event: any): Promise<any> {
         event.preventDefault();
         const newUser = {
@@ -15,7 +17,8 @@ export default function Register(this: any): JSX.Element {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(newUser),
             }).then(res => res.text()).then(res => {
-                alert("Your user id is " + res + ". Please remember!")
+                alert("Your user id is " + res + ". Please remember!");
+                navigate("/login");
             })
         ;
 

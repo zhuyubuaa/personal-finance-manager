@@ -11,7 +11,7 @@ class AccountBookView(APIView):
             # for abid in u_ab:
             #     ab = AccountBook.objects.filter(pk=abid).first()
             #     abList.append({"ab_id": abid, "ab_name": ab.ab_name})
-            abList = [{"ab_id": ab.id, "ab_name": ab.ab_name}
+            abList = [{"ab_id": ab.ab_id, "ab_name": ab.ab_name}
                       for ab in AccountBook.objects.filter(u_id=data["u_id"])]
             return Response(abList)
         return Response(0)
