@@ -14,11 +14,16 @@ class BudgetView(APIView):
         return Response(0)
 
     def post(self, request):
-        newAB = Budget.objects.create(b_amount=request.data["b_amount"],
-                                      ab_id=request.data["ab_id"],
-                                      type_id=request.data["type_name"])
-        newAB.save()
-        return Response(0)
+        budget = Budget.objects.filter(ab__budget__type_id=request.data["type_name"])
+        info = 0
+        if budget:
+            info = 1
+        else:
+            newAB = Budget.objects.create(b_amount=request.data["b_amount"],
+                                          ab_id=request.data["ab_id"],
+                                          type_id=request.data["type_name"])
+            newAB.save()
+        return Response(info)
 
     def delete(self, request):
         data = request.GET
