@@ -1,4 +1,4 @@
 .profile {
   background-color: #f6f8fb;
-  height: 100%;
+  height: calc(100%-64px);
 }

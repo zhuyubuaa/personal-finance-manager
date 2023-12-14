@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import { Card, CircularProgress } from "@mui/material";
 import { useUserContext } from "../context/UserContext";
 import "../styles/pages/home.css";
 import "../styles/components/transactions.css";
@@ -12,6 +12,8 @@ interface LedgerType {
   ab_id: number;
   ab_name: string;
 }
+
+const cardColors = ["#5d50c7", "#ef2840", "#f8bc16", "#008F7A", "#ef7428"];
 
 export default function Home(): JSX.Element {
   const [ledgers, setLedgers] = useState<LedgerType[]>([]);
@@ -57,29 +59,31 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <Box className="">
-        <div className="home">
-          <div className="home-ledgers">
-            {loading ? (
-              <CircularProgress />
-            ) : (
-              ledgers.map((ledger, i) => (
-                <div
+      <div className="home">
+        <div className="home-ledgers">
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            ledgers.map((ledger, i) => {
+              const color = cardColors[i % 4];
+              return (
+                <Card
+                  style={{ background: `${color}` }}
                   key={ledger.ab_id}
                   className="ledger-card"
                   onClick={() => handleLedgerChange(ledger.ab_id)}
                 >
                   {ledger.ab_name}
-                </div>
-              ))
-            )}
-          </div>
-          <div className="home-logs">
-            <BudgetsLog selectedLedger={selectedLedger} />
-            <TransactionLog selectedLedger={selectedLedger} />
-          </div>
+                </Card>
+              );
+            })
+          )}
         </div>
-      </Box>
+        <div className="home-logs">
+          <BudgetsLog selectedLedger={selectedLedger} />
+          <TransactionLog selectedLedger={selectedLedger} />
+        </div>
+      </div>
     </>
   );
 }

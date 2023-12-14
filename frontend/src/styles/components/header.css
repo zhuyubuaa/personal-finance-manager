@@ -1,4 +1,24 @@
 .header {
   position: sticky;
-  color: whitesmoke;
+  box-shadow: none;
+  height: 64px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.header-bar {
+  color: "#5d50c7";
+  /* background-image: linear-gradient(
+    to right,
+    #f6f8fb 33.4%,
+    rgba(0, 0, 0, 0) 20%
+  ); */
+}
+
+.header-toolbar {
+  color: "#5d50c7";
+  width: 400px;
+}
+
+.header-name-text {
+  width: 300px;
 }

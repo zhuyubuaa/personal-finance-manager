@@ -1,14 +1,14 @@
 .home {
   display: flex;
-  height: 100%;
+  height: calc(100% - 64px);
   justify-content: center;
   align-items: center;
 }
 
 .home-ledgers {
-  width: 400px;
-  height: 660px;
-
+  width: 30%;
+  /* height: 660px; */
+  height: calc(100%);
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -31,19 +31,23 @@
 }
 
 .home-ledgers .ledger-card {
-  width: 300px;
+  max-width: 300px;
+  width: 80%;
   min-height: 150px;
-  border: 1px solid black;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px; */
 }
 
 /* RIGHT SIDE */
 .home-logs {
-  height: 660px;
+  height: calc(100% - 20px);
   width: 80%;
   padding: 8px;
   background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

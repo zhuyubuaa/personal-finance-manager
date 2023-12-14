@@ -31,11 +31,16 @@ export default function Header(): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
 
+  const HeaderBar = styled(AppBar)({
+    backgroundColor: "#FFF",
+    boxShadow: "none",
+  });
+
   const HeaderButtons = styled(Box)({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    color: "white",
+    color: "#5d50c7",
   });
 
   const headerIcons = [
@@ -72,12 +77,20 @@ export default function Header(): JSX.Element {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} className="header">
-        <AppBar position="static">
+        <HeaderBar position="static" className="header-bar">
           <Container maxWidth="xl">
             <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Icon
-              </Typography>
+              <Box className="header-toolbar" sx={{ flexGrow: 1 }}>
+                <div className="header-name-text">
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    sx={{ color: "#5d50c7" }}
+                  >
+                    Icon
+                  </Typography>
+                </div>
+              </Box>
               {/* change position later */}
               {headerIcons.map((iconObj) => {
                 return (
@@ -105,7 +118,7 @@ export default function Header(): JSX.Element {
               onClose={handleMenuClose}
             />
           </Container>
-        </AppBar>
+        </HeaderBar>
       </Box>
       {accountDialog && (
         <Account

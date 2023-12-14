@@ -1,8 +1,10 @@
 .home-transactions {
-  height: 350px;
-  padding: 4px;
-  width: 100%;
+  height: 60%;
+  width: 50%;
+  padding: 10px;
+  padding-left: 0;
   overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 .home-transactions::-webkit-scrollbar {
@@ -15,7 +17,6 @@
 }
 
 .trans-card {
-  width: 70%;
   min-height: 40px;
   border-radius: 8px;
   padding: 8px;

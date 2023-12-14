@@ -1,5 +1,6 @@
 .side-menu {
-  border: 1px solid blue;
   height: 100vh;
   background-color: #fff;
+  display: flex;
+  align-items: center;
 }
