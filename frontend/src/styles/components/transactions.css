@@ -1,0 +1,43 @@
+.home-transactions {
+  height: 350px;
+  padding: 4px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.home-transactions::-webkit-scrollbar {
+  display: none;
+}
+
+.home-transactions {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.trans-card {
+  width: 70%;
+  min-height: 40px;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #404040;
+}
+
+.trans-card-left {
+  font-size: small;
+}
+.trans-card-left h4 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.income {
+  color: #6c74bd;
+}
+
+.expense {
+  color: #f08895;
+}

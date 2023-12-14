@@ -71,7 +71,6 @@ export default function Budget(props: any): JSX.Element {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Add Budget</DialogTitle>
-
       <DialogContent>
         <form onSubmit={onSubmit} className="add-form">
           <FormControl sx={{ width: 552 }}>

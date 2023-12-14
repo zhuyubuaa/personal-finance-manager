@@ -19,11 +19,15 @@ import Account from "./sub/Account";
 import Ledger from "./sub/Ledger";
 import Transaction from "./sub/Transaction";
 import ProfileMenu from "./ProfileMenu";
+import Success from "./sub/Success";
+import Fail from "./sub/Fail";
 
 export default function Header(): JSX.Element {
   const [accountDialog, setAccountDialog] = useState<boolean>(false);
   const [transDialog, setTransDialog] = useState<boolean>(false);
   const [ledgerDialog, setLedgertDialog] = useState<boolean>(false);
+  const [successDialog, setSuccessDialog] = useState(false);
+  const [failDialog, setFailDialog] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
 
@@ -61,6 +65,9 @@ export default function Header(): JSX.Element {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const handleSuccessDialog = (val: boolean) => setSuccessDialog(val);
+  const handleFailDialog = (val: boolean) => setFailDialog(val);
 
   return (
     <>
@@ -101,14 +108,33 @@ export default function Header(): JSX.Element {
         </AppBar>
       </Box>
       {accountDialog && (
-        <Account open={accountDialog} onClose={() => setAccountDialog(false)} />
+        <Account
+          open={accountDialog}
+          onClose={() => setAccountDialog(false)}
+          success={handleSuccessDialog}
+          fail={handleFailDialog}
+        />
       )}
       {ledgerDialog && (
-        <Ledger open={ledgerDialog} onClose={() => setLedgertDialog(false)} />
+        <Ledger
+          open={ledgerDialog}
+          onClose={() => setLedgertDialog(false)}
+          success={handleSuccessDialog}
+          fail={handleFailDialog}
+        />
       )}
       {transDialog && (
-        <Transaction open={transDialog} onClose={() => setTransDialog(false)} />
+        <Transaction
+          open={transDialog}
+          onClose={() => setTransDialog(false)}
+          success={handleSuccessDialog}
+          fail={handleFailDialog}
+        />
       )}
+      {successDialog && (
+        <Success open={successDialog} onClose={handleSuccessDialog} />
+      )}
+      {failDialog && <Fail open={failDialog} onClose={handleFailDialog} />}
     </>
   );
 }

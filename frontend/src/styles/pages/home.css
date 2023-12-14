@@ -1,18 +1,49 @@
-.home-budgets {
+.home {
   display: flex;
-}
-
-.budget-field {
-  width: 60px;
-  height: 60px;
-  border: 1px solid grey;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   align-items: center;
 }
 
-.budget-field h4 {
-  margin-top: 10px;
-  margin-bottom: 0;
+.home-ledgers {
+  width: 400px;
+  height: 660px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  overflow-y: scroll;
+
+  padding: 8px;
+  background-color: #f6f8fb;
+}
+
+.home-ledgers::-webkit-scrollbar {
+  display: none;
+}
+
+.home-ledgers {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.home-ledgers .ledger-card {
+  width: 300px;
+  min-height: 150px;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* RIGHT SIDE */
+.home-logs {
+  height: 660px;
+  width: 80%;
+  padding: 8px;
+  background-color: #ffffff;
 }

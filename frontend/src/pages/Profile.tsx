@@ -1,7 +1,6 @@
 import React from "react";
 import { useUserContext } from "../context/UserContext";
 import { Button } from "@mui/material";
-import Header from "../components/Header";
 import "../styles/pages/profile.css";
 
 export default function Profile(): JSX.Element {
@@ -11,7 +10,6 @@ export default function Profile(): JSX.Element {
   };
   return (
     <div className="profile">
-      <Header />
       <div>
         <p>
           <b>UserName: </b>

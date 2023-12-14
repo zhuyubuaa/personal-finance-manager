@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 
 export default function Ledger(props: any): JSX.Element {
-  const { open, onClose } = props;
+  const { open, onClose, success, fail } = props;
   const [ledgerName, setLedgerName] = useState<string>("");
   const [nameError, setNameError] = useState<boolean>(false);
   const curUser = useUserContext().currentUser;
@@ -33,10 +33,13 @@ export default function Ledger(props: any): JSX.Element {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newAccBook),
         });
-        console.log("response", response);
+        if (response.status === 200) {
+          success(true);
+        }
       }
     } catch (error) {
       console.log("Ledge add error", error);
+      fail(true);
     } finally {
       onClose();
     }
