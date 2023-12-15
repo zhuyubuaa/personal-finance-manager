@@ -17,6 +17,8 @@ import TransactionLog from "../components/home/TransactionLog";
 import BudgetsLog from "../components/home/BudgetsLog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import UserEdit from "../components/sub/UserEdit";
+import LedgerEdit from "../components/sub/LedgerEdit";
 
 //types used
 interface LedgerType {
@@ -30,6 +32,7 @@ export default function Home(): JSX.Element {
   const [ledgers, setLedgers] = useState<LedgerType[]>([]);
   const [selectedLedger, setSelectedLedger] = useState<number | null>(null); //ledger id
   const [loading, setLoading] = useState(false);
+  const [ledgerEditDialog, setLedgerEditDialog] = useState<boolean>(false);
   const { currentUser } = useUserContext();
 
   useEffect(() => {
@@ -88,27 +91,7 @@ export default function Home(): JSX.Element {
   };
 
   const onLedgerEdit = async (ledgerId: any) => {
-    // try {
-    //   const newAccBook = {
-    //     ab_name: ledgerName,
-    //     u_id: curUser?.userId,
-    //   };
-    //   const response = await fetch("http://localhost:8000/accountbook", {
-    //     method: "post",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(newAccBook),
-    //   });
-    //   if (response === 0) {
-    //     //Reload component
-    //     console.log("success");
-    //   } else {
-    //     console.log("Error deleting budget");
-    //   }
-    // } catch (error) {
-    //   console.log("Error deleting budget");
-    // } finally {
-    //   // onMenuClose();
-    // }
+    setLedgerEditDialog(true);
   };
 
   const handleLedgerChange = (ledgerID: number) => {
@@ -191,6 +174,13 @@ export default function Home(): JSX.Element {
             })
           )}
         </Box>
+        {ledgerEditDialog &&
+            <LedgerEdit
+                open={ledgerEditDialog}
+                onClose={() => setLedgerEditDialog(false)}
+                ledgerId={selectedLedger}
+            />
+        }
         <div className="home-logs">
           <BudgetsLog selectedLedger={selectedLedger} />
           <TransactionLog selectedLedger={selectedLedger} />
