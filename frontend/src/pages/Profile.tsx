@@ -15,6 +15,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Account from "../components/sub/Account";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import UserEdit from "../components/sub/UserEdit";
 
 interface AccountType {
   a_name: string;
@@ -29,6 +30,7 @@ export default function Profile(): JSX.Element {
     null
   );
   const [openDialog, setOpenDialog] = useState(false);
+  const [openUserEdit, setOpenUserEdit] = useState(false);
   const { currentUser, handleLogout } = useUserContext();
 
   useEffect(() => {
@@ -78,7 +80,9 @@ export default function Profile(): JSX.Element {
     }
   };
 
-  const onUserEdit = () => {};
+  const onUserEdit = () => {
+      setOpenUserEdit(true);
+  };
 
   const CustomBox = styled(Box)({
     width: "100%",
@@ -127,6 +131,12 @@ export default function Profile(): JSX.Element {
           <Button variant="outlined" onClick={onUserEdit}>
             Edit
           </Button>
+            {openUserEdit && (
+                <UserEdit
+                    open={openUserEdit}
+                    onClose={() => setOpenUserEdit(false)}
+                 />)
+            }
           <Button variant="outlined" onClick={handleLogout}>
             Logout
           </Button>
