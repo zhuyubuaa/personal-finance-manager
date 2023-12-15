@@ -14,6 +14,7 @@ import styled from "@emotion/styled";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Account from "../components/sub/Account";
+import ListAltIcon from "@mui/icons-material/ListAlt";
 
 interface AccountType {
   a_name: string;
@@ -199,7 +200,10 @@ export default function Profile(): JSX.Element {
                 </CustomCard>
               ))
             ) : (
-              <CustomBox>Empty</CustomBox>
+              <CustomBox sx={{ color: "#b5bac5" }}>
+                <ListAltIcon sx={{ fontSize: "48px" }} />
+                <Typography variant="h5">No Data</Typography>
+              </CustomBox>
             )}
           </div>
         )}
