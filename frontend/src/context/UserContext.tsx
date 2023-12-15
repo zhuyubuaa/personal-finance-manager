@@ -45,6 +45,8 @@ export const UserContextProvider = ({ children }: UserProviderType) => {
       ) {
         navigate("/home");
       }
+    } else if (location.pathname === "/register") {
+      navigate("/register");
     } else {
       navigate("/login");
     }

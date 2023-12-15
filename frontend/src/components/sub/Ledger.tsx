@@ -65,7 +65,7 @@ export default function Ledger(props: any): JSX.Element {
       )}
       <DialogContent>
         <form onSubmit={onSubmit} className="add-form">
-          <FormLabel required>New Ledger Nam</FormLabel>
+          <FormLabel required>New Ledger Name</FormLabel>
           <TextField
             required
             type="text"
