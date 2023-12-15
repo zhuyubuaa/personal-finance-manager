@@ -22,6 +22,7 @@ class LogView(APIView):
     def post(self, request):
         newAB = Log.objects.create(l_amount=request.data["l_amount"],
                                    remark=request.data["remark"],
+                                   time=datetime.datetime.now(),
                                    a_id=request.data["a_id"],
                                    ab_id=request.data["ab_id"],
                                    type_id=request.data["type_name"])

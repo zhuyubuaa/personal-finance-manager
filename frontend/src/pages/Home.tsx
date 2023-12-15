@@ -84,6 +84,7 @@ export default function Home(): JSX.Element {
     } finally {
       // onMenuClose();
     }
+    window.location.reload();
   };
 
   const onLedgerEdit = async (ledgerId: any) => {

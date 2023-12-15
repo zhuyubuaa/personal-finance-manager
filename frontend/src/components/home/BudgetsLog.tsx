@@ -96,6 +96,7 @@ function BudgetsLog({ selectedLedger }: any) {
     } finally {
       onMenuClose();
     }
+    window.location.reload();
   };
 
   //Upcoming feature

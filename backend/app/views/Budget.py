@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from app.models import Budget
+from app.models import Budget, Log
 
 
 class BudgetView(APIView):
@@ -14,14 +14,21 @@ class BudgetView(APIView):
         return Response(0)
 
     def post(self, request):
-        budget = Budget.objects.filter(ab__budget__type_id=request.data["type_name"])
+        b_type = request.data["type_name"]
+        b_ab_id = request.data["ab_id"]
+        budget = Budget.objects.filter(ab_id=b_ab_id, type_id=b_type)
         info = 0
         if budget:
             info = 1
         else:
-            newAB = Budget.objects.create(b_amount=request.data["b_amount"],
-                                          ab_id=request.data["ab_id"],
-                                          type_id=request.data["type_name"])
+            set_amount = request.data["b_amount"]
+            b_type_logs = Log.objects.filter(ab_id=b_ab_id, type_id=b_type)
+            if b_type_logs:
+                for log in b_type_logs:
+                    set_amount += log.l_amount
+            newAB = Budget.objects.create(b_amount=set_amount,
+                                          ab_id=b_ab_id,
+                                          type_id=b_type)
             newAB.save()
         return Response(info)
 

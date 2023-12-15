@@ -46,6 +46,7 @@ export default function Account(props: any): JSX.Element {
     } finally {
       onClose();
     }
+    window.location.reload();
   };
 
   return (

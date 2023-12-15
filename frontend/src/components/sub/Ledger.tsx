@@ -43,6 +43,7 @@ export default function Ledger(props: any): JSX.Element {
     } finally {
       onClose();
     }
+    window.location.reload();
   };
 
   return (

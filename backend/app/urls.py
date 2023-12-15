@@ -11,6 +11,7 @@ urlpatterns = [
     path("budget", Budget.BudgetView.as_view()),
     path("log", Log.LogView.as_view()),
     path("query", Query.QueryMonthDetailView.as_view()),
+    path("query_account", Query.QueryMonthAccountDetail.as_view()),
     path("out_order", Query.QueryMonthOutOrder.as_view()),
     path("in_order", Query.QueryMonthInOrder.as_view()),
     path("out_detail_order", Query.QueryMonthDetailOutOrderView.as_view()),

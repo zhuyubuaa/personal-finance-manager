@@ -77,6 +77,7 @@ function TransactionLog({ selectedLedger }: any): JSX.Element {
     } catch (error) {
       console.log("Error deleting transaction log", error);
     }
+    window.location.reload();
   };
 
   const ColorButton = styled(Button)({
