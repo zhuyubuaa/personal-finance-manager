@@ -17,8 +17,7 @@ import TransactionLog from "../components/home/TransactionLog";
 import BudgetsLog from "../components/home/BudgetsLog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import UserEdit from "../components/sub/UserEdit";
-import LedgerEdit from "../components/sub/LedgerEdit";
+import Ledger from "../components/sub/Ledger";
 
 //types used
 interface LedgerType {
@@ -32,7 +31,7 @@ export default function Home(): JSX.Element {
   const [ledgers, setLedgers] = useState<LedgerType[]>([]);
   const [selectedLedger, setSelectedLedger] = useState<number | null>(null); //ledger id
   const [loading, setLoading] = useState(false);
-  const [ledgerEditDialog, setLedgerEditDialog] = useState<boolean>(false);
+  const [openEditDialog, setEditDialog] = useState(false);
   const { currentUser } = useUserContext();
 
   useEffect(() => {
@@ -91,7 +90,7 @@ export default function Home(): JSX.Element {
   };
 
   const onLedgerEdit = async (ledgerId: any) => {
-    setLedgerEditDialog(true);
+    setEditDialog(true);
   };
 
   const handleLedgerChange = (ledgerID: number) => {
@@ -139,53 +138,65 @@ export default function Home(): JSX.Element {
                   >
                     <Typography variant="h5">{ledger.ab_name}</Typography>
                   </CardContent>
-                  <CardActions
-                    disableSpacing
-                    sx={{
-                      padding: 0,
-                      position: "absolute",
-                      bottom: "0",
-                      right: "8px",
-                      display: "flex",
-                      flexDirection: "row-reverse",
-                      width: "100%",
-                      height: "32px",
-                    }}
-                  >
-                    <IconButton
-                      aria-label="ledger-delete"
-                      onClick={() => {
-                        onLedgerDelete(ledger.ab_id);
+
+                  {selectedLedger === ledger.ab_id ? (
+                    <CardActions
+                      disableSpacing
+                      sx={{
+                        padding: 0,
+                        position: "absolute",
+                        bottom: "0",
+                        right: "8px",
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                        width: "100%",
+                        height: "32px",
                       }}
                     >
-                      <DeleteIcon sx={{ fontSize: "16px", color: "#fff" }} />
-                    </IconButton>
-                    <IconButton
-                      aria-label="ledger-edit"
-                      onClick={() => {
-                        onLedgerEdit(ledger.ab_id);
-                      }}
-                    >
-                      <EditIcon sx={{ fontSize: "16px", color: "#fff" }} />
-                    </IconButton>
-                  </CardActions>
+                      <IconButton
+                        aria-label="ledger-delete"
+                        onClick={() => {
+                          onLedgerDelete(ledger.ab_id);
+                        }}
+                      >
+                        <DeleteIcon sx={{ fontSize: "16px", color: "#fff" }} />
+                      </IconButton>
+                      <IconButton
+                        aria-label="ledger-edit"
+                        onClick={() => {
+                          onLedgerEdit(ledger.ab_id);
+                        }}
+                      >
+                        <EditIcon sx={{ fontSize: "16px", color: "#fff" }} />
+                      </IconButton>
+                    </CardActions>
+                  ) : (
+                    <></>
+                  )}
                 </Card>
               );
             })
           )}
         </Box>
-        {ledgerEditDialog &&
-            <LedgerEdit
-                open={ledgerEditDialog}
-                onClose={() => setLedgerEditDialog(false)}
-                ledgerId={selectedLedger}
-            />
-        }
+        {openEditDialog && (
+          <Ledger
+            open={openEditDialog}
+            onClose={() => setEditDialog(false)}
+            ledgerId={selectedLedger}
+          />
+        )}
         <div className="home-logs">
           <BudgetsLog selectedLedger={selectedLedger} />
           <TransactionLog selectedLedger={selectedLedger} />
         </div>
       </div>
+      {openEditDialog && (
+        <Ledger
+          open={openEditDialog}
+          onClose={() => setEditDialog(false)}
+          selectedLedger={selectedLedger}
+        />
+      )}
     </>
   );
 }

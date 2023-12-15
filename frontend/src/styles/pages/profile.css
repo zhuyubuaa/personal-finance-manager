@@ -1,4 +1,77 @@
 .profile {
+  height: calc(100% - 70px);
   background-color: #f6f8fb;
-  height: calc(100%-64px);
+  display: flex;
+}
+
+.user {
+  width: 25%;
+  padding: 16px;
+}
+
+.user-card {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.accounts {
+  height: 100%;
+  width: 70%;
+  padding: 24px 16px;
+}
+
+.accounts-field {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px;
+}
+
+.account-card {
+  width: 30%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.acc-name {
+  width: 100%;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: left;
+  padding-left: 10%;
+}
+
+.acc-balance {
+  width: 100%;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: right;
+  padding-right: 10%;
+}
+
+.acc-balance span {
+  font-size: 16px;
+  font-weight: 300;
+  color: "#b5bac5";
+}
+
+.acc-balance:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+.selected-card {
+  color: "#5d50c7";
+  background-color: "#E6E4F6";
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  border: 1px solid "#5d50c7";
 }
