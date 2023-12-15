@@ -17,38 +17,6 @@ import { useEffect, useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import { useUserContext } from "../../context/UserContext";
 
-//Temp dummy data
-const typesData = {
-  income: [
-    {
-      typeName: "Bonus",
-    },
-    {
-      typeName: "Other Income",
-    },
-    {
-      typeName: "Red bag",
-    },
-    {
-      typeName: "Salary",
-    },
-  ],
-  outcome: [
-    {
-      typeName: "Dining",
-    },
-    {
-      typeName: "Other Expenditure",
-    },
-    {
-      typeName: "Shopping",
-    },
-    {
-      typeName: "Sports",
-    },
-  ],
-};
-
 interface SelectedSub {
   main: string;
   sub: string;

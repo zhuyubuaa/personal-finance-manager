@@ -8,6 +8,8 @@ import {
   Button,
   Container,
   Typography,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import {
   AccountCircle,
@@ -18,9 +20,11 @@ import {
 import Account from "./sub/Account";
 import Ledger from "./sub/Ledger";
 import Transaction from "./sub/Transaction";
-import ProfileMenu from "./ProfileMenu";
+// import ProfileMenu from "./ProfileMenu";
 import Success from "./sub/Success";
 import Fail from "./sub/Fail";
+import { useUserContext } from "../context/UserContext";
+import { useLocation } from "react-router-dom";
 
 export default function Header(): JSX.Element {
   const [accountDialog, setAccountDialog] = useState<boolean>(false);
@@ -30,6 +34,8 @@ export default function Header(): JSX.Element {
   const [failDialog, setFailDialog] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
+  const { handleLogout } = useUserContext();
+  const location = useLocation();
 
   const HeaderBar = styled(AppBar)({
     backgroundColor: "#FFF",
@@ -64,15 +70,33 @@ export default function Header(): JSX.Element {
     },
   ];
 
+  const handleSuccessDialog = (val: boolean) => setSuccessDialog(val);
+  const handleFailDialog = (val: boolean) => setFailDialog(val);
+
   const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+    event.preventDefault();
+    if (anchorEl === null) {
+      setAnchorEl(event.currentTarget);
+    } else {
+      setAnchorEl(null);
+    }
   };
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
 
-  const handleSuccessDialog = (val: boolean) => setSuccessDialog(val);
-  const handleFailDialog = (val: boolean) => setFailDialog(val);
+  const onLogout = (): void => {
+    handleLogout();
+    setAnchorEl(null);
+  };
+
+  const ProfileMenu = () => {
+    return (
+      <Menu open={openMenu} anchorEl={anchorEl} onClose={handleMenuClose}>
+        <MenuItem onClick={onLogout}>Logout</MenuItem>
+      </Menu>
+    );
+  };
 
   return (
     <>
@@ -85,9 +109,9 @@ export default function Header(): JSX.Element {
                   <Typography
                     variant="h5"
                     component="div"
-                    sx={{ color: "#5d50c7" }}
+                    sx={{ color: "#5d50c7", fontWeight: "bold" }}
                   >
-                    Icon
+                    {location.pathname === "/home" ? "HOME" : "PROFILE"}
                   </Typography>
                 </div>
               </Box>
@@ -112,13 +136,9 @@ export default function Header(): JSX.Element {
                 </HeaderButtons>
               </Button>
             </Toolbar>
-            <ProfileMenu
-              openMenu={openMenu}
-              anchorEl={anchorEl}
-              onClose={handleMenuClose}
-            />
           </Container>
         </HeaderBar>
+        {<ProfileMenu />}
       </Box>
       {accountDialog && (
         <Account

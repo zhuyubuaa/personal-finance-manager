@@ -18,13 +18,14 @@ interface OutType {
 }
 
 export default function Budget(props: any): JSX.Element {
-  const { open, onClose, ledger } = props;
+  const { open, onClose, ledger, currentBudgets } = props;
   const [budgetAmount, setBudgetAmount] = useState<number>(0);
   const [types, setTypes] = useState<OutType[]>([]);
   const [budgetType, setBudgetType] = useState<string>("");
 
   useEffect(() => {
     getTypes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTypes = async (): Promise<any> => {
@@ -36,7 +37,13 @@ export default function Budget(props: any): JSX.Element {
       if (response.status === 200) {
         const data = (await response.json()) as any;
         const expenseTypes = data["expense"];
-        setTypes(() => [...expenseTypes]);
+        const filteredTypes = expenseTypes.filter(
+          (type: any) =>
+            !currentBudgets
+              .map((budget: any) => budget.type_name)
+              .includes(type.typeName)
+        );
+        setTypes(() => [...filteredTypes]);
       }
     } catch (error) {
       console.log("Error fetching type data", error);
@@ -55,12 +62,18 @@ export default function Budget(props: any): JSX.Element {
         b_amount: budgetAmount,
         type_name: budgetType,
       };
-      console.log("newBudget", newBudget);
-      fetch("http://localhost:8000/budget", {
+      const response = await fetch("http://localhost:8000/budget", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newBudget),
-      });
+      }).then((res) => res.json());
+
+      if (response === 0) {
+        //Add reload
+        console.log("success");
+      } else {
+        console.log("Error Adding Budget");
+      }
     } catch (error) {
       console.log("Budget add error", error);
     } finally {

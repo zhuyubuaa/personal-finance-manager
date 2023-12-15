@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Card, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CircularProgress,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import { useUserContext } from "../context/UserContext";
 import "../styles/pages/home.css";
 import "../styles/components/transactions.css";
 import "../styles/components/budgets.css";
+import styled from "@emotion/styled";
 import TransactionLog from "../components/home/TransactionLog";
 import BudgetsLog from "../components/home/BudgetsLog";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 //types used
 interface LedgerType {
@@ -53,16 +64,73 @@ export default function Home(): JSX.Element {
     }
   };
 
+  const onLedgerDelete = async (ledgerId: any) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/accountbook?ab_id=` + ledgerId,
+        {
+          method: "delete",
+          headers: { "Content-Type": "application/json" },
+        }
+      ).then((res) => res.json());
+      if (response === 0) {
+        //Reload component
+        console.log("success");
+      } else {
+        console.log("Error deleting budget");
+      }
+    } catch (error) {
+      console.log("Error deleting budget");
+    } finally {
+      // onMenuClose();
+    }
+  };
+
+  const onLedgerEdit = async (ledgerId: any) => {
+    // try {
+    //   const newAccBook = {
+    //     ab_name: ledgerName,
+    //     u_id: curUser?.userId,
+    //   };
+    //   const response = await fetch("http://localhost:8000/accountbook", {
+    //     method: "post",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(newAccBook),
+    //   });
+    //   if (response === 0) {
+    //     //Reload component
+    //     console.log("success");
+    //   } else {
+    //     console.log("Error deleting budget");
+    //   }
+    // } catch (error) {
+    //   console.log("Error deleting budget");
+    // } finally {
+    //   // onMenuClose();
+    // }
+  };
+
   const handleLedgerChange = (ledgerID: number) => {
     setSelectedLedger(ledgerID);
   };
 
+  const CustomBox = styled(Box)({
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  });
+
   return (
     <>
       <div className="home">
-        <div className="home-ledgers">
+        <Box className="home-ledgers">
           {loading ? (
-            <CircularProgress />
+            <CustomBox>
+              <CircularProgress />
+            </CustomBox>
           ) : (
             ledgers.map((ledger, i) => {
               const color = cardColors[i % 4];
@@ -72,13 +140,56 @@ export default function Home(): JSX.Element {
                   key={ledger.ab_id}
                   className="ledger-card"
                   onClick={() => handleLedgerChange(ledger.ab_id)}
+                  sx={{
+                    position: "relative",
+                  }}
                 >
-                  {ledger.ab_name}
+                  <CardContent
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#f3f1fb",
+                    }}
+                  >
+                    <Typography variant="h5">{ledger.ab_name}</Typography>
+                  </CardContent>
+                  <CardActions
+                    disableSpacing
+                    sx={{
+                      padding: 0,
+                      position: "absolute",
+                      bottom: "0",
+                      right: "8px",
+                      display: "flex",
+                      flexDirection: "row-reverse",
+                      width: "100%",
+                      height: "32px",
+                    }}
+                  >
+                    <IconButton
+                      aria-label="ledger-delete"
+                      onClick={() => {
+                        onLedgerDelete(ledger.ab_id);
+                      }}
+                    >
+                      <DeleteIcon sx={{ fontSize: "16px", color: "#fff" }} />
+                    </IconButton>
+                    <IconButton
+                      aria-label="ledger-edit"
+                      onClick={() => {
+                        onLedgerEdit(ledger.ab_id);
+                      }}
+                    >
+                      <EditIcon sx={{ fontSize: "16px", color: "#fff" }} />
+                    </IconButton>
+                  </CardActions>
                 </Card>
               );
             })
           )}
-        </div>
+        </Box>
         <div className="home-logs">
           <BudgetsLog selectedLedger={selectedLedger} />
           <TransactionLog selectedLedger={selectedLedger} />

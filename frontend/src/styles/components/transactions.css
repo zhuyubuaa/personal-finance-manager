@@ -1,17 +1,32 @@
 .home-transactions {
   height: 60%;
   width: 50%;
+  /* padding: 10px; */
+  padding-left: 0;
+}
+.transactions-header {
+  height: 15%;
+  width: 100%;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.transactions-body {
+  height: 85%;
+  width: 100%;
   padding: 10px;
   padding-left: 0;
   overflow-y: scroll;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
-.home-transactions::-webkit-scrollbar {
+.transactions-body::-webkit-scrollbar {
   display: none;
 }
 
-.home-transactions {
+.transactions-body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -25,6 +40,11 @@
   justify-content: space-between;
   align-items: center;
   color: #404040;
+}
+
+.trans-card:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 .trans-card-left {

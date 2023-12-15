@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface UserType {
   userId: string;
@@ -31,18 +31,24 @@ export const useUserContext = () => useContext(UserContext);
 export const UserContextProvider = ({ children }: UserProviderType) => {
   const [currentUser, setCurrentUser] = useState<UserType | undefined>();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    console.log("uf in context");
     const user = localStorage.getItem("user");
     if (user) {
       const curUser = JSON.parse(user);
-      console.log("stored", curUser);
       setCurrentUser(curUser);
+      if (
+        location.pathname === "/" ||
+        location.pathname === "/login" ||
+        location.pathname === "/register"
+      ) {
+        navigate("/home");
+      }
     } else {
       navigate("/login");
     }
-  }, [navigate]);
+  }, [location.pathname, navigate]);
 
   const handleLogout = (): void => {
     setCurrentUser(undefined);
