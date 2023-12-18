@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import Layout from "./components/Layout";
+import { UserContextProvider } from "./context/UserContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <Layout>
+      <UserContextProvider>
         <App />
-      </Layout>
+      </UserContextProvider>
     </React.StrictMode>
   </BrowserRouter>
 );

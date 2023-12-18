@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="347462f3-7942-45fe-ac6d-bd2c5169526a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Profile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -33,8 +41,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/BUAA/personal-finance-manager&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/BUAA/test&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -42,8 +50,18 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\BUAA\\personal-finance-manager\\backend\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\BUAA\personal-finance-manager\backend" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="backend" type="Python.DjangoServer" factoryName="Django server">
       <module name="backend" />
@@ -84,7 +102,29 @@
       <workItem from="1700574567086" duration="1456000" />
       <workItem from="1700577665253" duration="626000" />
       <workItem from="1700580303516" duration="567000" />
-      <workItem from="1700634142521" duration="1438000" />
+      <workItem from="1700634142521" duration="4341000" />
+      <workItem from="1700702381930" duration="1052000" />
+      <workItem from="1700706120774" duration="1351000" />
+      <workItem from="1700725613057" duration="4932000" />
+      <workItem from="1700732750055" duration="4685000" />
+      <workItem from="1700789759952" duration="5591000" />
+      <workItem from="1700828746132" duration="4185000" />
+      <workItem from="1700875524746" duration="3617000" />
+      <workItem from="1700896242182" duration="4037000" />
+      <workItem from="1700901658304" duration="209000" />
+      <workItem from="1701097698239" duration="44000" />
+      <workItem from="1701135696239" duration="3275000" />
+      <workItem from="1701139385052" duration="2474000" />
+      <workItem from="1701157234827" duration="4130000" />
+      <workItem from="1701171866775" duration="2033000" />
+      <workItem from="1701222617770" duration="17000" />
+      <workItem from="1701429477952" duration="518000" />
+      <workItem from="1702361223172" duration="7826000" />
+      <workItem from="1702389630931" duration="1820000" />
+      <workItem from="1702466591851" duration="1386000" />
+      <workItem from="1702549295312" duration="368000" />
+      <workItem from="1702604945429" duration="3606000" />
+      <workItem from="1702619593732" duration="1188000" />
     </task>
     <servers />
   </component>

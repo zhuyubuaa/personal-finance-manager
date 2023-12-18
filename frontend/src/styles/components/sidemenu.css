@@ -1,0 +1,10 @@
+.side-menu {
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.currentMenu {
+  border: 1px solid red;
+}

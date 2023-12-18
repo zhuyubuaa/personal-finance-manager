@@ -1,0 +1,58 @@
+.home {
+  display: flex;
+  height: calc(100% - 64px);
+  justify-content: center;
+  align-items: center;
+}
+
+.home-ledgers {
+  width: 30%;
+  /* height: 660px; */
+  height: calc(100%);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  overflow-y: scroll;
+
+  padding: 8px;
+  background-color: #f6f8fb;
+}
+
+.home-ledgers::-webkit-scrollbar {
+  display: none;
+}
+
+.home-ledgers {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.home-ledgers .ledger-card {
+  max-width: 300px;
+  width: 80%;
+  min-height: 150px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px; */
+}
+
+.ledger-card:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+/* RIGHT SIDE */
+.home-logs {
+  height: calc(100% - 20px);
+  width: 80%;
+  padding: 8px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

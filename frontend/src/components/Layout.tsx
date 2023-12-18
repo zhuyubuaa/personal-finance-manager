@@ -1,12 +1,16 @@
-// import Footer from "./Footer";
 import Header from "./Header";
+import SideMenu from "./SideMenu";
+
+
 
 export default function Layout({ children }: any): JSX.Element {
   return (
     <div className="layout">
-      <Header />
-      {children}
-      {/* <Footer /> */}
+      <SideMenu />
+      <div className="main-body">
+        <Header />
+        {children}
+      </div>
     </div>
   );
 }
